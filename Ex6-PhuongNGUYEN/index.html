@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ex6</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="form-container">
+      <div class="titre">
+        <h1>Contactez-nous</h1>
+      </div>
+      <form action="form.php" method="post" onsubmit="return validateForm()">
+        <fieldset class="champs">
+            <legend>Vos coordonnées</legend>
+            <div class="form-group">
+                <label for="nom">Nom * :</label>
+                <input type="text" id="nom" name="nom" placeholder="Votre nom" required aria-required="true">
+                <span class="error-message" id="error-nom"></span>
+            </div>
+            <div class="form-group">
+                <label for="prenom">Prénom * :</label>
+                <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required aria-required="true">
+                <span class="error-message" id="error-prenom"></span>
+            </div>
+            <div class="form-group">
+                <label for="telephone">Téléphone * :</label>
+                <input type="tel" id="telephone" name="telephone" placeholder="Votre téléphone" required aria-required="true">
+                <span class="error-message" id="error-telephone"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email * :</label>
+                <input type="email" id="email" name="email" placeholder="Votre email" required aria-required="true">
+                <span class="error-message" id="error-email"></span>
+            </div>
+            <div class="form-group">
+                <label for="objet">Objet * :</label>
+                <input type="text" id="objet" name="objet" placeholder="Objet" required aria-required="true">
+                <span class="error-message" id="error-objet"></span>
+            </div>
+        </fieldset>
+
+        <fieldset class="champs">
+            <legend>Votre message</legend>
+            <textarea id="texte" name="texte" placeholder="Votre message ici..."></textarea>
+        </fieldset>
+
+        <div class="texte">
+            <p>* Tous les champs sont obligatoires</p>
+        </div>
+
+        <div class="buttons">
+            <button type="reset">EFFACER</button>
+            <button type="submit">ENVOYER</button>
+        </div>
+    </form>
+    </div>
+    <script>
+      function validateForm() {
+        let isValid = true;
+
+        const fields = ["nom", "prenom", "telephone", "email", "objet"];
+        fields.forEach((field) => {
+          const input = document.getElementById(field);
+          const error = document.getElementById(`error-${field}`);
+          if (!input.value.trim()) {
+            error.textContent = `Le champ ${field} est obligatoire.`;
+            input.style.border = "1px solid red";
+            isValid = false;
+          } else {
+            error.textContent = "";
+            input.style.border = "1px solid #ccc";
+          }
+        });
+
+        return isValid;
+      }
+    </script>
+  </body>
+</html>
